@@ -1,11 +1,15 @@
-package github.com.lewis.watson.couchbase.spring.cache.demo;
+package github.com.lewis.watson.couchbase.spring.cache.demo.couchbase;
 
+import static github.com.lewis.watson.couchbase.spring.cache.demo.CacheConstants.DOGS;
+import org.springframework.boot.autoconfigure.cache.CacheManagerCustomizer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import com.couchbase.client.java.Bucket;
 import com.couchbase.client.java.Cluster;
 import com.couchbase.client.java.CouchbaseCluster;
-import com.couchbase.client.spring.cache.CouchbaseCache;
+import com.couchbase.client.spring.cache.CacheBuilder;
+import com.couchbase.client.spring.cache.CouchbaseCacheManager;
+import github.com.lewis.watson.couchbase.spring.cache.demo.service.DogServiceProperties;
 
 @Configuration
 public class CouchbaseCacheConfig {
@@ -22,9 +26,9 @@ public class CouchbaseCacheConfig {
   }
 
   @Bean
-  public CouchbaseCache couchbaseCache(Bucket bucket, DemoProperties properties) {
-    return new CouchbaseCache(properties.getCache().getName(), bucket,
-        properties.getCache().getTimeToLiveSeconds());
+  public CacheManagerCustomizer<CouchbaseCacheManager> cacheManagerCustomizer(Bucket bucket,
+      DogServiceProperties properties) {
+    return c -> c.prepareCache(DOGS, CacheBuilder.newInstance(bucket)
+        .withExpiration(properties.getCache().getTimeToLiveSeconds()));
   }
-
 }

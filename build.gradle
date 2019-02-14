@@ -15,11 +15,11 @@ repositories {
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter'
-	implementation 'org.springframework.boot:spring-boot-starter-data-couchbase' // shouldn't need this, but the test fails due no no encryption manager otherwise :(
+	implementation 'com.couchbase.client:couchbase-spring-cache'
+	implementation group: 'com.couchbase.client', name: 'couchbase-client', version: '1.4.13'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	compileOnly('org.projectlombok:lombok')
     annotationProcessor('org.projectlombok:lombok')
-    implementation 'com.couchbase.client:couchbase-spring-cache'
     testCompile 'org.awaitility:awaitility:3.1.6'
 }
 

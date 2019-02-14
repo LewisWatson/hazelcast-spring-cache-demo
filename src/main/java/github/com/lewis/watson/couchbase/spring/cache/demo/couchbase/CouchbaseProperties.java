@@ -1,4 +1,4 @@
-package github.com.lewis.watson.couchbase.spring.cache.demo;
+package github.com.lewis.watson.couchbase.spring.cache.demo.couchbase;
 
 import java.util.List;
 import lombok.Data;
