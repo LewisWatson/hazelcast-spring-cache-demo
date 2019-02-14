@@ -1,0 +1,25 @@
+plugins {
+	id 'org.springframework.boot' version '2.1.2.RELEASE'
+	id 'java'
+}
+
+apply plugin: 'io.spring.dependency-management'
+
+group = 'github.com.lewis.watson'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter'
+	implementation 'org.springframework.boot:spring-boot-starter-data-couchbase' // shouldn't need this, but the test fails due no no encryption manager otherwise :(
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	compileOnly('org.projectlombok:lombok')
+    annotationProcessor('org.projectlombok:lombok')
+    implementation 'com.couchbase.client:couchbase-spring-cache'
+    testCompile 'org.awaitility:awaitility:3.1.6'
+}
+
