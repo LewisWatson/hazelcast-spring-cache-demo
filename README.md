@@ -1,5 +1,7 @@
 # Hazelcast Spring Cache Demo
 
+[![Build Status](https://travis-ci.org/LewisWatson/hazelcast-spring-cache-demo.svg?branch=develop)](https://travis-ci.org/LewisWatson/hazelcast-spring-cache-demo)
+
 Example Spring Boot app demonstrating how use [Hazelcast Data Grid] via the Spring cache abstraction.
 
 ## Run Test
