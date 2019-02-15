@@ -6,7 +6,7 @@ plugins {
 apply plugin: 'io.spring.dependency-management'
 
 group = 'github.com.lewis.watson'
-version = '0.0.1-SNAPSHOT'
+version = '0.1.0'
 sourceCompatibility = '1.8'
 
 repositories {
@@ -15,11 +15,13 @@ repositories {
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter'
-	implementation 'com.couchbase.client:couchbase-spring-cache'
-	implementation group: 'com.couchbase.client', name: 'couchbase-client', version: '1.4.13'
+	implementation 'com.hazelcast:hazelcast-spring'
+	testImplementation group: 'com.hazelcast', name: 'hazelcast', version: '3.11.1', classifier: 'tests'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	compileOnly('org.projectlombok:lombok')
-    annotationProcessor('org.projectlombok:lombok')
+    compileOnly 'org.projectlombok:lombok'
+    testCompileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+    testAnnotationProcessor 'org.projectlombok:lombok'
     testCompile 'org.awaitility:awaitility:3.1.6'
 }
 
