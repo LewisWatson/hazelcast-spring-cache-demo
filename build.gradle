@@ -15,8 +15,6 @@ repositories {
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter'
-	implementation 'org.springframework.boot:spring-boot-starter-cache'
-	implementation 'com.hazelcast:hazelcast-client'
 	implementation 'com.hazelcast:hazelcast-spring'
 	testImplementation group: 'com.hazelcast', name: 'hazelcast', version: '3.11.1', classifier: 'tests'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
