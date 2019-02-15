@@ -1,6 +1,5 @@
 package github.com.lewis.watson.hazelcast.spring.cache.demo;
 
-import static github.com.lewis.watson.hazelcast.spring.cache.demo.CacheConstants.DOGS;
 import static java.util.concurrent.TimeUnit.SECONDS;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.awaitility.Awaitility.await;
@@ -64,7 +63,7 @@ public class DogCacheIT {
      * Then
      */
 
-    Cache cache = cacheManager.getCache(DOGS);
+    Cache cache = cacheManager.getCache(properties.getName());
 
     Dog actualValue = cache.get(key, Dog.class);
 

@@ -4,3 +4,4 @@ pluginManagement {
 	}
 }
 rootProject.name = 'hazelcast-spring-cache-demo'
+enableFeaturePreview('STABLE_PUBLISHING')

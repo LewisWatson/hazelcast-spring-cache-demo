@@ -10,6 +10,11 @@ import lombok.Data;
 public class DogCacheProperties {
 
   /**
+   * Name of cache, for use in spring cache abstraction
+   */
+  private String name;
+
+  /**
    * Seconds before the value should be evicted from the cache
    */
   private int timeToLiveSeconds;

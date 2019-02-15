@@ -20,9 +20,10 @@ dependencies {
 	implementation 'com.hazelcast:hazelcast-spring'
 	testImplementation group: 'com.hazelcast', name: 'hazelcast', version: '3.11.1', classifier: 'tests'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	compileOnly('org.projectlombok:lombok')
-	testCompileOnly('org.projectlombok:lombok')
-    annotationProcessor('org.projectlombok:lombok')
+    compileOnly 'org.projectlombok:lombok'
+    testCompileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+    testAnnotationProcessor 'org.projectlombok:lombok'
     testCompile 'org.awaitility:awaitility:3.1.6'
 }
 
