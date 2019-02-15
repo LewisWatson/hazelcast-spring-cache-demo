@@ -1,37 +1,51 @@
-package github.com.lewis.watson.couchbase.spring.cache.demo;
+package github.com.lewis.watson.hazelcast.spring.cache.demo;
 
-import static github.com.lewis.watson.couchbase.spring.cache.demo.CacheConstants.DOGS;
+import static github.com.lewis.watson.hazelcast.spring.cache.demo.CacheConstants.DOGS;
 import static java.util.concurrent.TimeUnit.SECONDS;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.awaitility.Awaitility.await;
-import java.io.IOException;
 import java.util.concurrent.Callable;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.cache.Cache;
 import org.springframework.cache.CacheManager;
+import org.springframework.context.annotation.Bean;
 import org.springframework.test.context.junit4.SpringRunner;
-import github.com.lewis.watson.couchbase.spring.cache.demo.model.Dog;
-import github.com.lewis.watson.couchbase.spring.cache.demo.service.DogService;
-import github.com.lewis.watson.couchbase.spring.cache.demo.service.DogServiceProperties;
+import com.hazelcast.config.Config;
+import com.hazelcast.core.HazelcastInstance;
+import com.hazelcast.test.TestHazelcastInstanceFactory;
+import github.com.lewis.watson.hazelcast.spring.cache.demo.model.Dog;
+import github.com.lewis.watson.hazelcast.spring.cache.demo.service.DogCache;
+import github.com.lewis.watson.hazelcast.spring.cache.demo.service.DogCacheProperties;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class DogCacheIT {
 
+  @TestConfiguration
+  static class DogCacheITMockHazelcastConfig {
+
+    @Bean
+    public HazelcastInstance testHazelcastInstance(Config config) {
+      return new TestHazelcastInstanceFactory().newHazelcastInstance(config);
+    }
+
+  }
+
   @Autowired
-  private DogService dogService;
+  private DogCache dogCache;
 
   @Autowired
   private CacheManager cacheManager;
 
   @Autowired
-  private DogServiceProperties properties;
+  private DogCacheProperties properties;
 
   @Test
-  public void testDogObjectsCanBeCachedAndOnlyRetrievableWithinTTL() throws IOException {
+  public void testDogsCanBeCachedAndOnlyRetrievableWithinTTL() {
 
     /*
      * Given
@@ -44,21 +58,21 @@ public class DogCacheIT {
      * When
      */
 
-    dogService.putDog(givenValue);
+    dogCache.put(key, givenValue);
 
     /*
      * Then
      */
 
-    Dog actualValue = dogService.getDog(givenValue.toString());
+    Cache cache = cacheManager.getCache(DOGS);
+
+    Dog actualValue = cache.get(key, Dog.class);
 
     assertThat(actualValue)
         .as(String.format("cache should contain expected value for key: %s", key))
         .isEqualTo(givenValue);
 
-    Cache cache = cacheManager.getCache(DOGS);
-
-    await().atMost(properties.getCache().getTimeToLiveSeconds() + 1l, SECONDS)
+    await().atMost(properties.getTimeToLiveSeconds() + 1l, SECONDS)
         .until(keyNoLongerExistsInCache(cache, key));
 
   }

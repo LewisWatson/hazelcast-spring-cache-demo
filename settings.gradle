@@ -3,4 +3,4 @@ pluginManagement {
 		gradlePluginPortal()
 	}
 }
-rootProject.name = 'couchbase-spring-cache-demo'
+rootProject.name = 'hazelcast-spring-cache-demo'
