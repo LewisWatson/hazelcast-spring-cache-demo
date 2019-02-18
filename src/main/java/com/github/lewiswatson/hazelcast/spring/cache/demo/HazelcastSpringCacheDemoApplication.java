@@ -1,4 +1,4 @@
-package github.com.lewis.watson.hazelcast.spring.cache.demo;
+package com.github.lewiswatson.hazelcast.spring.cache.demo;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

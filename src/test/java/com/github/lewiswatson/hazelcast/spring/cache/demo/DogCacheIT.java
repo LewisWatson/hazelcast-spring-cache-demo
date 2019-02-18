@@ -1,4 +1,4 @@
-package github.com.lewis.watson.hazelcast.spring.cache.demo;
+package com.github.lewiswatson.hazelcast.spring.cache.demo;
 
 import static java.util.concurrent.TimeUnit.SECONDS;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -13,12 +13,12 @@ import org.springframework.cache.Cache;
 import org.springframework.cache.CacheManager;
 import org.springframework.context.annotation.Bean;
 import org.springframework.test.context.junit4.SpringRunner;
+import com.github.lewiswatson.hazelcast.spring.cache.demo.model.Dog;
+import com.github.lewiswatson.hazelcast.spring.cache.demo.service.DogCache;
+import com.github.lewiswatson.hazelcast.spring.cache.demo.service.DogCacheProperties;
 import com.hazelcast.config.Config;
 import com.hazelcast.core.HazelcastInstance;
 import com.hazelcast.test.TestHazelcastInstanceFactory;
-import github.com.lewis.watson.hazelcast.spring.cache.demo.model.Dog;
-import github.com.lewis.watson.hazelcast.spring.cache.demo.service.DogCache;
-import github.com.lewis.watson.hazelcast.spring.cache.demo.service.DogCacheProperties;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest

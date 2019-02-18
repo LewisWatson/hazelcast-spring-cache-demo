@@ -1,10 +1,10 @@
-package github.com.lewis.watson.hazelcast.spring.cache.demo.hazelcast;
+package com.github.lewiswatson.hazelcast.spring.cache.demo.hazelcast;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import com.github.lewiswatson.hazelcast.spring.cache.demo.service.DogCacheProperties;
 import com.hazelcast.config.Config;
 import com.hazelcast.config.MapConfig;
-import github.com.lewis.watson.hazelcast.spring.cache.demo.service.DogCacheProperties;
 
 @Configuration
 public class HazelcastConfiguration {

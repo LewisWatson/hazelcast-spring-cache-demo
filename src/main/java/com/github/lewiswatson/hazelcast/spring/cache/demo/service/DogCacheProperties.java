@@ -1,4 +1,4 @@
-package github.com.lewis.watson.hazelcast.spring.cache.demo.service;
+package com.github.lewiswatson.hazelcast.spring.cache.demo.service;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
